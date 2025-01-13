@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isVisibleByExternalUsers>false</isVisibleByExternalUsers>
+    <language>en_US</language>
+    <masterLabel>DALLE_20241129_182134_A_stylish_an</masterLabel>
+    <relationships>
+        <organization>
+            <access>VIEWER</access>
+        </organization>
+    </relationships>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>DALL·E 2024-11-29 18.21.34 - A stylish and professional logo design for the company &apos;SFXperts&apos;, seamlessly incorporating the name into the design. The logo should feature a tech a.jpg</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

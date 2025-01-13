@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isVisibleByExternalUsers>false</isVisibleByExternalUsers>
+    <language>en_US</language>
+    <masterLabel>DALLE_20240916_152105_Create_a_log</masterLabel>
+    <originNetwork>SaurabhKnowledgePortal</originNetwork>
+    <relationships>
+        <network>
+            <access>VIEWER</access>
+            <name>SaurabhKnowledgePortal</name>
+        </network>
+        <workspace>
+            <access>INFERRED</access>
+            <isManagingWorkspace>true</isManagingWorkspace>
+            <name>sfdc_asset_company_assets</name>
+        </workspace>
+    </relationships>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>DALL·E 2024-09-16 15.21.05 - Create a logo for a personal website with the name &apos;Saurabh&apos; that incorporates Salesforce imagery and colors. Use the Salesforce cloud symbol and blen.jpg</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

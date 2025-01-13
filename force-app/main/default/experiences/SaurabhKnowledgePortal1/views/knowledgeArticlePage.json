@@ -1,0 +1,68 @@
+{
+  "appPageId" : "ef82efb2-5509-4331-97b7-686313b9926c",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "c06142dc-437a-4e76-a9ef-243e397f5036",
+  "label" : "Knowledge Article Page",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "e00900ea-3189-4eb6-9f2a-fe6b6cade3cf",
+          "columns" : [ {
+            "UUID" : "56b59957-ddba-4139-bdb9-9e02c89cd0cb",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "e00900ea-3189-4eb6-9f2a-fe6b6cade3cf",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:knowledgeArticleDetail",
+          "id" : "19b8d27c-a3c2-4c52-9da7-9c22c70a0d29",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "56b59957-ddba-4139-bdb9-9e02c89cd0cb",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a9b2558f-6fbc-4b64-a233-35d03630b550",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Knowledge Article Page"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "56a02a18-1a55-4eba-9240-ae4da1a557a8",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "fdef1c41-493b-4300-8507-325ccb5a57dd",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-knowledge-article-page"
+}

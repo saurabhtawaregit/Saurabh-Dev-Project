@@ -1,0 +1,21 @@
+<apex:page standardController="Case" extensions="CreateCaseController" action="{!init}">
+    <apex:form >
+        <apex:pageBlock title="Create New Case">
+            <apex:pageMessages />
+
+            <!-- Case Fields -->
+            <apex:pageBlockSection title="Case Information" columns="2">
+                <apex:inputField value="{!caseRecord.Subject}" required="true" />
+                <apex:inputField value="{!caseRecord.Status}" />
+                <apex:inputField value="{!caseRecord.Priority}" />
+                <apex:inputField value="{!caseRecord.Origin}" />
+            </apex:pageBlockSection>
+
+            <!-- Save and Cancel Buttons -->
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!saveCase}" />
+                <apex:commandButton value="Cancel" action="{!cancel}" immediate="true" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

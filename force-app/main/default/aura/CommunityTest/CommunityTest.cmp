@@ -1,0 +1,4 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:attribute name="SearchString" type="String" default="{!searchString}"/>
+<aura:attribute name="isValid" type="String" default="false" />
+</aura:component>

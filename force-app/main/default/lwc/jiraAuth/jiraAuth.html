@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Authorization for Jira">
+        <div class="slds-box">
+            <lightning-input label="Auth Code" value={authCode} disabled class="code"></lightning-input>
+            <div class="slds-text-align_center">
+                <lightning-button label="Authorize For Jira" onclick={handleAuthorizeForJira}></lightning-button>
+            </div>
+            
+            <lightning-input label="ACCESS TOKEN" value={accessTokenJira} disabled class="code"></lightning-input>
+            <lightning-input label="REFRESH TOKEN" value={refreshTokenJira} disabled class="code"></lightning-input>
+            <lightning-input label="EXPIRE TIME" value={expireTime} disabled class="code"></lightning-input>
+            <div class="slds-text-align_center">
+                <lightning-button label="Authenticate for Jira" onclick={handleAuthenticateForJira}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

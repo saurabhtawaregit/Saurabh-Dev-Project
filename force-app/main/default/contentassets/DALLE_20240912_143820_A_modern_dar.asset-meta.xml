@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <isVisibleByExternalUsers>false</isVisibleByExternalUsers>
+    <language>en_US</language>
+    <masterLabel>DALLE_20240912_143820_A_modern_dar</masterLabel>
+    <relationships>
+        <organization>
+            <access>VIEWER</access>
+        </organization>
+    </relationships>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>DALL·E 2024-09-12 14.38.20 - A modern dark theme design for a Salesforce user interface branded with the name &apos;Saurabh&apos;. The global header has a dark gray background (#1e1e1e) wit.jpg</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

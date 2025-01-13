@@ -1,0 +1,34 @@
+/* addressValidation.css */
+.address-validation-container {
+    background-color: white;
+}
+
+.slds-radio {
+    display: flex;
+    align-items: center;
+}
+
+.slds-form-element__label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.slds-col {
+    padding: 1rem;
+}
+
+.slds-border_left {
+    border-left: 1px solid #d8dde6;
+}
+
+lightning-formatted-text {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+lightning-formatted-text::before {
+    content: attr(label);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}

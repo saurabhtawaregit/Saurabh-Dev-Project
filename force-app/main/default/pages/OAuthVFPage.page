@@ -1,0 +1,30 @@
+<apex:page controller="VF_AtlassionOauthComponentController" action="{!onLoad}" lightningStylesheets="true">
+    
+    <apex:form >
+        <apex:pageBlock id="pageBlock" html-class="slds-box">
+            <apex:pageBlockSection title="Authorization for jira" collapsible="true">
+                <apex:outputPanel >Auth Code:</apex:outputPanel>
+                <apex:inputText disabled="true" value="{!auth_code}" styleClass="code" />
+                <div align="center" draggable="false">
+                    <apex:commandButton action="{!genenateAuthorizeCodeForJira}" value="Authorize For Jira" styleClass="button" rerender="pageBlock"
+                    />
+                </div>
+                <!-- </apex:pageBlockSection> -->
+
+                <!-- <apex:pageBlockSection title="Authentication for jira"  collapsible="true"> -->
+                <div>ACCESS TOKEN: </div>
+                <apex:inputText disabled="true" value="{!access_tokenJira}" styleClass="code" />
+                <div>REFRESH TOKEN: </div>
+                <apex:inputText disabled="true" value="{!refresh_tokenJira}" styleClass="code" />
+                <div>EXPIRE TIME: </div>
+                <apex:inputText disabled="true" value="{!expireTime}" styleClass="code" />
+                <div align="center" draggable="false">
+                    <apex:commandButton action="{!getAndSaveTheAccessTokenForJira}" value="Authenticate for jira" styleClass="button" rerender="pageBlock"
+                    />
+                </div>
+                <!-- </apex:pageBlockSection> -->
+            </apex:pageBlockSection>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

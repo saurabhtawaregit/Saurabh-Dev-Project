@@ -1,0 +1,18 @@
+<template>
+    <template if:true={isSpinner}>
+    <div class="exampleHolder">
+    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </div>
+    </template>
+    <template if:true={showData}>
+    <lightning-card title="Contact Address" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+            <p><strong>Address:</strong></p>
+            <p>City:{uspsAddressResponse.address.city}</p>
+            <p>State:{uspsAddressResponse.address.state}</p>
+            <p>streetAddress:{uspsAddressResponse.address.streetAddress}</p>
+            <p>ZIPCode:{uspsAddressResponse.address.ZIPCode}</p>
+        </div>
+    </lightning-card>
+    </template> 
+</template>

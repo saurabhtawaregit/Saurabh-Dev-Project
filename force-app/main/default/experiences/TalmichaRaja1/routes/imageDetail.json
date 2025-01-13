@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "dc727293-ac09-4c0a-9f89-2e1d73be7c00",
+  "appPageId" : "c11e176b-037d-4b23-9ade-d7615d39c6fc",
+  "configurationTags" : [ ],
+  "devName" : "Image_Detail__c",
+  "id" : "1d822c60-b565-4a53-b2f8-5e18937336b5",
+  "label" : "Image Detail",
+  "routeType" : "managed-content-cms_image",
+  "type" : "route",
+  "urlPrefix" : "cms-image"
+}

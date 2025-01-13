@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Contact Search">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Contact Email" type="email" value={contactEmail} onchange={handleEmailChange}></lightning-input>
+            <lightning-button label="Search" onclick={searchContact}></lightning-button>
+        </div>
+        <div if:true={contact} class="slds-m-around_medium">
+            <p>Name: {contact.Name}</p>
+            <p>Email: {contact.Email}</p>
+            <p>Phone: {contact.Phone}</p>
+        </div>
+    </lightning-card>
+</template>

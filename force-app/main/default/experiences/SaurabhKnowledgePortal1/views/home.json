@@ -1,0 +1,100 @@
+{
+  "appPageId" : "ef82efb2-5509-4331-97b7-686313b9926c",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "04d8437d-7fa0-4a7c-8043-74c681dbebc4",
+  "label" : "Home",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "bannerText" : "A place where you can easily find solutions and ask questions",
+        "bannerTextWithKnowledge" : "Explore other <a href=\"javascript:void(0)\" class=\"headlineArticles\">articles</a> and <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+        "bannerTextWithoutKnowledge" : "Explore other <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+        "pageType" : "",
+        "showSubTopics" : true,
+        "title" : "Welcome To knowledgePortal",
+        "uniqueNameOrId" : ""
+      },
+      "componentName" : "forceCommunity:headline",
+      "id" : "c03de032-e908-4a56-ad3a-79d849157f13",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "65deb13e-27da-4019-9c7f-12b319d743e5",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "buttonAlignment" : "center",
+        "buttonBgColor" : "",
+        "buttonBgHoverColor" : "",
+        "buttonBorderColor" : "",
+        "buttonMaxWidth" : 100,
+        "buttonRadius" : 0,
+        "buttonTextColor" : "",
+        "buttonTextHoverColor" : "",
+        "confirmationMessage" : "Got it!",
+        "followUpPromptLabel" : "Can we close your question?",
+        "isAskFollowPromptEnabled" : true,
+        "isIncludeArticlesEnabled" : false,
+        "isIncludeDiscussionsEnabled" : true,
+        "isInitialSatisfactionPromptEnabled" : true,
+        "isPublisherDeflectionEnabled" : true,
+        "label" : "Ask a Question",
+        "maxSuggestions" : 5,
+        "satisfactionPromptLabel" : "Did we help to answer your question?",
+        "showDetails" : false,
+        "showTopics" : true,
+        "uneditableTopics" : false
+      },
+      "componentName" : "forceCommunity:askCommunity",
+      "id" : "d5b7b939-04bb-4064-a87c-93c383b934f6",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "c70cb7f7-ab9a-4760-a1c8-fcf0b0f085e3",
+    "regionName" : "featured",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:knowledgeArticleList",
+      "id" : "3dc53b0e-1f44-440d-97ee-d26fe0f3c27c",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "653ea323-f98a-4820-8cb3-b6e42bd9beaf",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "5a5ea7c2-c208-4e01-addd-2e0180e48fd6",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "b6ac7d24-9000-4061-93c5-5013bcb5ae9e",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "d277bbd1-4d76-40ad-bd21-fa6396ef6e53",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "c385455b-2166-4fca-b682-5ca1bf933d58",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "home"
+}

@@ -1,0 +1,57 @@
+<!-- addressValidation.html -->
+<template>
+    <div class="address-validation-container slds-p-around_medium">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <span class="slds-radio">
+                            <input type="radio" id="given-address" name="address-type" value="given" checked={isGivenAddressSelected} onchange={handleRadioChange} />
+                            <label class="slds-radio__label" for="given-address">
+                                <span class="slds-radio_faux"></span>
+                                <span class="slds-form-element__label">Your Given Address</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="Street" value={givenStreet}></lightning-formatted-text>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="City" value={givenCity}></lightning-formatted-text>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="Zipcode" value={givenZipcode}></lightning-formatted-text>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="Country" value={givenCountry}></lightning-formatted-text>
+                </div>
+            </div>
+            <div class="slds-col slds-border_left">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <span class="slds-radio">
+                            <input type="radio" id="validated-address" name="address-type" value="validated" checked={isValidatedAddressSelected} onchange={handleRadioChange} />
+                            <label class="slds-radio__label" for="validated-address">
+                                <span class="slds-radio_faux"></span>
+                                <span class="slds-form-element__label">Validated Address</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="Street" value={validatedStreet}></lightning-formatted-text>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="City" value={validatedCity}></lightning-formatted-text>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="Zipcode" value={validatedZipcode}></lightning-formatted-text>
+                </div>
+                <div class="slds-m-top_small">
+                    <lightning-formatted-text label="Country" value={validatedCountry}></lightning-formatted-text>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

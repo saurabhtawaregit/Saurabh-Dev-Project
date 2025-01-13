@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "c06142dc-437a-4e76-a9ef-243e397f5036",
+  "appPageId" : "ef82efb2-5509-4331-97b7-686313b9926c",
+  "configurationTags" : [ ],
+  "devName" : "Knowledge_Article_Page__c",
+  "id" : "540dd74f-d588-464d-bb3b-3ca689c3a4ca",
+  "label" : "Knowledge Article Page",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-knowledge-article-page",
+  "type" : "route",
+  "urlPrefix" : "knowledge-article-page"
+}
