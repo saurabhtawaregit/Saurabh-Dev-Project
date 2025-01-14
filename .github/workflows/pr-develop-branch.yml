@@ -94,8 +94,8 @@ jobs:
               run: |
                   wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
                   mkdir ~/sf
-                  tar xJf sf-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  tar xJf sf-linux-x64.tar.xz -C ~/sf --strip-components 1
+                  echo "$HOME/sf/bin" >> $GITHUB_PATH
                   ~/sf/bin/sfdx version
 
             # Then we install the SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
