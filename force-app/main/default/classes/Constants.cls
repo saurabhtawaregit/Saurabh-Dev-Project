@@ -13,5 +13,5 @@
 
 public class Constants {
 	public static final String knowledgeCommunityName = 'SaurabhKnowledgePortal';
-	public static final String communityName = 'STawareSSS';
+	public static final String communityName = 'STawareSSSSSSt';
 }
