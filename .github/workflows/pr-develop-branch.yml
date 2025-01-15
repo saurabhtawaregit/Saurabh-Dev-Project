@@ -174,7 +174,7 @@ jobs:
               if: ${{ env.APEX_TESTS != 'all' }}
               run: |
                   echo ${{env.APEX_TESTS}}
-                  sf deploy metadata --manifest "manifest/package.xml" --dry-run --json --testlevel RunSpecifiedTests --runtests ${env.APEX_TESTS}
+                  sf deploy metadata --manifest "manifest/package.xml" --dry-run --json --testlevel RunSpecifiedTests ${env.APEX_TESTS}
 
             # If the env variable equals all, we run all testsjd
             - name: 'Check-only deploy delta changes - run all tests'
