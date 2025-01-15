@@ -180,7 +180,7 @@ jobs:
             - name: 'Check-only deploy delta changes - run all tests'
               if: ${{ env.APEX_TESTS == 'all' }}
               run: |
-                   sf deploy metadata --manifest "manifest/package.xml" --check-only --verbose
+                   sf deploy metadata --manifest "manifest/package.xml" --dry-run --verbose
 
             - name: 'Deploy destructive changes (if any)'
               run: sfdx force:mdapi:deploy -d "changed-sources/destructiveChanges" --checkonly --ignorewarnings
