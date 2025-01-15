@@ -9,7 +9,7 @@
 		<name>AnimationRule</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>Constants</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
