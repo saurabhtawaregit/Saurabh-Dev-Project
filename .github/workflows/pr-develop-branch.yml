@@ -174,13 +174,13 @@ jobs:
               if: ${{ env.APEX_TESTS != 'all' }}
               run: |
                   echo ${{env.APEX_TESTS}}
-                  sf deploy metadata --manifest "manifest/package.xml" --dry-run --json --testlevel RunSpecifiedTests ${env.APEX_TESTS}
+                  sfdx force:source:deploy -p "changed-sources/force-app" --checkonly --testlevel RunSpecifiedTests --runtests ${{env.APEX_TESTS}} --json
 
             # If the env variable equals all, we run all testsjd
             - name: 'Check-only deploy delta changes - run all tests'
               if: ${{ env.APEX_TESTS == 'all' }}
               run: |
-                   sf deploy metadata --manifest "manifest/package.xml" --dry-run --test-level RunLocalTests --verbose
-
+                   sfdx force:source:deploy -p "changed-sources/force-app" --checkonly --testlevel RunLocalTests  --json
+                   
             - name: 'Deploy destructive changes (if any)'
               run: sfdx force:mdapi:deploy -d "changed-sources/destructiveChanges" --checkonly --ignorewarnings
