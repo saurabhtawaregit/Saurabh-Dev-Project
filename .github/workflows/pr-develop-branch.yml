@@ -1,6 +1,7 @@
 # Unique name for this workflow
 name: Validate PR on develop branch
 
+# Definition when the workflow should run
 on:
   pull_request:
     types: [opened, synchronize]
@@ -8,69 +9,71 @@ on:
     paths:
       - 'force-app/**'
 
+# Jobs to be executed when the above conditions are met
 jobs:
   validate-deployment-on-develop-org:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      # Install Node.js
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      # Checkout the repository
+      # Checkout source code
       - name: 'Checkout source code'
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # Read PR body and extract test classes
+      # Set up Node.js
+      - name: 'Set up Node.js'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Read PR Body
       - name: 'Read PR Body'
         env:
-          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_BODY: ${{github.event.pull_request.body}}
         run: |
           echo $PR_BODY > ./pr_body.txt
           node ./parsePR.js
           TESTS=$(cat testsToRun.txt)
           echo "APEX_TESTS=$TESTS" >> $GITHUB_ENV
 
-      # Install Salesforce CLI
+      # Install Salesforce CLI (new version - sf)
       - name: 'Install Salesforce CLI'
         run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
-          mkdir ~/sf
-          tar xJf sf-linux-x64.tar.xz -C ~/sf --strip-components 1
-          echo "$HOME/sf/bin" >> $GITHUB_PATH
-          sf version
+          curl -sL https://developer.salesforce.com/media/salesforce-cli/sfcli/install | bash
+          echo "$HOME/.sf/bin" >> $GITHUB_PATH
+          sf --version
 
-      # Authenticate to the org using a stored secret
-      - name: 'Authenticate to Integration Org'
-        run: echo ${{ secrets.SFDX_INTEGRATION_URL }} > ./SFDX_INTEGRATION_URL.txt
-      - run: sf org login sfdx-url -f ./SFDX_INTEGRATION_URL.txt --set-default --alias integration
-
-      # Install Java (required for SFDX plugins)
-      - name: 'Install Java'
-        run: |
-          sudo apt-get update
-          sudo apt install default-jdk
-
-      # Install SFDX-Git-Delta plugin
+      # Install sfdx-git-delta
       - name: 'Install sfdx-git-delta'
         run: |
           echo y | sf plugins install sfdx-git-delta
-          sf plugins
+          sf plugins list
 
-      # Create delta package
+      # Install Java (required for certain Salesforce plugins)
+      - name: 'Install Java'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jdk
+
+      # Authenticate to Salesforce Org using URL
+      - name: 'Authenticate to Integration Org'
+        shell: bash
+        run: |
+          echo ${{ secrets.SFDX_INTEGRATION_URL }} > ./SFDX_INTEGRATION_URL.txt
+          sf org login sfdx-url -f ./SFDX_INTEGRATION_URL.txt --alias integration
+
+      # Create delta package for changes
       - name: 'Create delta packages for new, modified, or deleted metadata'
         run: |
           mkdir changed-sources
-          sf sgd delta --to HEAD --from HEAD^ --output changed-sources/ --source force-app/
+          sf sgd:source:delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/
 
-      # Scan code using SFDX Scanner
+      # Scan code
       - name: 'Scan code'
         run: |
           cd changed-sources
-          sf scanner run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'
+          sf scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'
           cd ..
 
       # Upload SARIF file
@@ -79,21 +82,19 @@ jobs:
         with:
           sarif_file: changed-sources/apexScanResults.sarif
 
-      # Check-only deploy with specified tests
+      # Check-only deploy delta changes (run specified tests)
       - name: 'Check-only deploy delta changes - run specified tests'
         if: ${{ env.APEX_TESTS != 'all' }}
         run: |
-          sf project deploy start -d "changed-sources/force-app" --check-only --test-level RunSpecifiedTests --tests ${{ env.APEX_TESTS }} --json
+          sf deploy metadata --source-dir "changed-sources/force-app" --check-only --test-level RunSpecifiedTests --runtests ${{ env.APEX_TESTS }} --json
 
-      # Check-only deploy with all tests
+      # Check-only deploy delta changes (run all tests)
       - name: 'Check-only deploy delta changes - run all tests'
         if: ${{ env.APEX_TESTS == 'all' }}
         run: |
-          sf project deploy start -d "changed-sources/force-app" --check-only --test-level RunLocalTests --json
+          sf deploy metadata --source-dir "changed-sources/force-app" --check-only --test-level RunLocalTests --json
 
-      # Deploy destructive changes if applicable
+      # Deploy destructive changes (if any)
       - name: 'Deploy destructive changes (if any)'
         run: |
-          if [ -d "changed-sources/destructiveChanges" ]; then
-            sf project deploy start -d "changed-sources/destructiveChanges" --check-only --ignore-warnings
-          fi
+          sf deploy metadata --source-dir "changed-sources/destructiveChanges" --check-only --ignore-warnings
