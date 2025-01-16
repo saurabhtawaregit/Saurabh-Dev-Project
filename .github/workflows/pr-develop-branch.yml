@@ -180,8 +180,8 @@ jobs:
               run: |
                 echo ${{env.APEX_TESTS}}
                 sf deploy metadata \
-                  --source-path "changed-sources/force-app" \
-                  --check-only \
+                  --metadata-dir "changed-sources/force-app" \
+                  --dry-run \
                   --test-level RunSpecifiedTests \
                   --tests ${{env.APEX_TESTS}} \
                   --json
@@ -192,14 +192,14 @@ jobs:
               if: ${{ env.APEX_TESTS == 'all' }}
               run: |
                 sf deploy metadata \
-                  --source-path "changed-sources/force-app" \
-                  --check-only \
+                  --metadata-dir "changed-sources/force-app" \
+                  --dry-run \
                   --test-level RunLocalTests \
                   --json
 
             - name: 'Deploy destructive changes (if any)'
               run: |
                 sf deploy metadata \
-                  --source-path "changed-sources/destructiveChanges" \
+                  --metadata-dir "changed-sources/destructiveChanges" \
                   --check-only \
-                  --ignore-warnings
+                  --ignore-errors
