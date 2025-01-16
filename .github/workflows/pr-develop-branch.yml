@@ -165,6 +165,11 @@ jobs:
                   sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
                   cd ..
 
+            #See all help commands by sf
+            - name : 'Help SF'
+              run : | 
+                sf help force
+
             # Now we upload the .sarif file as explained in the previous step
             - name: Upload SARIF file
               uses: github/codeql-action/upload-sarif@v1
