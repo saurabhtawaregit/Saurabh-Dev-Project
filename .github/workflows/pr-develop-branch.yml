@@ -33,7 +33,7 @@ jobs:
             # Now we install nodejs in the VM, and specify version 14
             - uses: actions/setup-node@v3
               with:
-                node-version: '20'
+                node-version: '18.18.0'
 
             # The idea is that the VM can access your remote repository
             # because your repository is an sfdx project.
@@ -92,16 +92,11 @@ jobs:
             # Now Install Salesforce CLI
             - name: 'Install Salesforce CLI'
               run: |
-                  wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
-                  mkdir ~/sf
-                  tar xJf sf-linux-x64.tar.xz -C ~/sf --strip-components 1
-                  echo "$HOME/sf/bin" >> $GITHUB_PATH
-                  ~/sf/bin/sfdx version
-
-            #Update Sfdx
-            - name: 'Update Salesforce CLI'
-              run: |
-                  sfdx update
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+                  mkdir ~/sfdx
+                  tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  ~/sfdx/bin/sfdx version
 
             # Then we install the SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
             # This is an awesome plugin that allows us to extract a package.xml with the metadata
@@ -165,11 +160,6 @@ jobs:
                   sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
                   cd ..
 
-            #See all help commands by sf
-            - name : 'Help SF'
-              run : | 
-                sf help force
-
             # Now we upload the .sarif file as explained in the previous step
             - name: Upload SARIF file
               uses: github/codeql-action/upload-sarif@v1
@@ -183,14 +173,28 @@ jobs:
             - name: 'Check-only deploy delta changes - run specified tests'
               if: ${{ env.APEX_TESTS != 'all' }}
               run: |
-                  echo ${{env.APEX_TESTS}}
-                  sfdx force:mdapi:deploy --deploydir "changed-sources/force-app" --checkonly --testlevel RunSpecifiedTests --runtests ${{ env.APEX_TESTS }} --json
+                echo ${{env.APEX_TESTS}}
+                sf deploy metadata \
+                  --source-path "changed-sources/force-app" \
+                  --check-only \
+                  --test-level RunSpecifiedTests \
+                  --tests ${{env.APEX_TESTS}} \
+                  --json
 
-            # If the env variable equals all, we run all testsjd
+
+            # If the env variable equals all, we run all tests
             - name: 'Check-only deploy delta changes - run all tests'
               if: ${{ env.APEX_TESTS == 'all' }}
               run: |
-                   sfdx force:mdapi:deploy --deploydir "changed-sources/force-app" --checkonly --testlevel RunLocalTests --json
-                   
+                sf deploy metadata \
+                  --source-path "changed-sources/force-app" \
+                  --check-only \
+                  --test-level RunLocalTests \
+                  --json
+
             - name: 'Deploy destructive changes (if any)'
-              run: sfdx force:mdapi:deploy --deploydir "changed-sources/destructiveChanges" --checkonly --ignorewarnings
+              run: |
+                sf deploy metadata \
+                  --source-path "changed-sources/destructiveChanges" \
+                  --check-only \
+                  --ignore-warnings
