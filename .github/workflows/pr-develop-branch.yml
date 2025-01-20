@@ -180,7 +180,7 @@ jobs:
               run: |
                 echo ${{env.APEX_TESTS}}
                 sf deploy metadata \
-                  --metadata-dir "changed-sources/force-app" \
+                  --manifest "manifest/package.xml" \
                   --dry-run \
                   --test-level RunSpecifiedTests \
                   --tests ${{env.APEX_TESTS}} \
