@@ -192,7 +192,7 @@ jobs:
               if: ${{ env.APEX_TESTS == 'all' }}
               run: |
                 sf deploy metadata \
-                  --metadata-dir "changed-sources/force-app" \
+                  --manifest "manifest/package.xml" \
                   --dry-run \
                   --test-level RunLocalTests \
                   --json
@@ -201,5 +201,5 @@ jobs:
               run: |
                 sf deploy metadata \
                   --metadata-dir "changed-sources/destructiveChanges" \
-                  --check-only \
+                  --dry-run \
                   --ignore-errors
