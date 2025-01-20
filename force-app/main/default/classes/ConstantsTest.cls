@@ -2,6 +2,6 @@
 public class ConstantsTest {
     @IsTest
     static void testConstants() {
-        System.assertEquals('SaurabhKnowledgePortalT', Constants.knowledgeCommunityName);
+        System.assertEquals('SaurabhKnowledgePortaslT', Constants.knowledgeCommunityName);
     }
 }
