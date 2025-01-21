@@ -1,18 +1,22 @@
 # Unique name for this workflow
 name: Deploy integration branch changes to integration and staging/uat orgs
 
-# Definition when the workflow should run
+# Definition of when the workflow should run
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
     paths:
       - 'force-app/**'
+  pull_request:
+    types:
+      - closed
+    branches: [develop]
 
 # Jobs to be executed
 jobs:
   deploy-changes-to-int-and-staging-orgs:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    if: ${{ github.event.pull_request.merged == true || github.ref == 'refs/heads/develop' }}
     steps:
       # Install Salesforce CLI
       - name: 'Install Salesforce CLI'
