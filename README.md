@@ -1,5 +1,13 @@
 # Salesforce DX Project: Next Steps
 
+
+Help Articles for Pipeline:
+https://www.salesforceben.com/build-your-own-ci-cd-pipeline-in-salesforce-using-github-actions/
+
+https://github.com/salto-io/salesforce-ci-cd-org-dev/blob/master/.github/workflows/push-develop-branch.yml
+
+
+
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
 ## How Do You Plan to Deploy Your Changes?
